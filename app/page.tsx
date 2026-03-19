@@ -4,59 +4,93 @@ import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
 import PropertyCard, { Property } from '@/components/ui/PropertyCard'
 
-const mockProperty: Property = {
-  id: '1',
-  title: 'Modern Family Home',
-  price: 850000,
-  address: '123 Pine St, Seattle',
-  beds: 3,
-  baths: 2,
-  area: 120,
-  imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuQ9M7U6euA6_cXmYuXnej-N5IuawAW8ds-4G1mzfqmiBc13qXsPhf9_j_zTB8gfEunrBHo8xMsxYwCw_pl8fsxbxRkmyvLR1N9Tiye5ZJG7fwlLn9MwyBanXYhE0emGwp59es1FEyQTRQbmXLUKO74Yj34ZHqrqIkOtMKhP8CmRFvfoHT5LAe10105vUhKNkxIBvtt530nfLigSUTemOOcJMVNmsgactntRJUwOBU_TZzND7BYtDklr8uZcNYlQOK5U74-ufIf-E',
-  type: 'FOR SALE'
-}
+const featuredProperties: Property[] = [
+  {
+    id: 'f1',
+    title: 'The Glass Pavilion',
+    price: 5250000,
+    address: 'Beverly Hills, California',
+    beds: 5,
+    baths: 4.5,
+    area: 4200,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCra-FKp81t0_OM8bWD55m2o9OOSnR_v7D0UilyExMImxyIcr9tIMZ2Py3HcC0ra_MtSsBkduMcwxUNKI9_iSXFFr_YRON1SF9hNM3fcYy-uG7N7uusL0Z367WINi1V7_GwfNQx-gsbUqLtzVi4ivFyqFQGb4qBs79bALeSFb6i3_ZnJnI1VVrN-VeZYHjfYyQI5C6zy90N3uxWZpwzIBhNoUDKKQjQ8EOEYPoyPTzhnh6b6AS3dkkFJ8t4xSDC6qjhMrQUoUPnAeM',
+    type: 'FOR SALE'
+  },
+  {
+    id: 'f2',
+    title: 'Azure Heights Penthouse',
+    price: 3800000,
+    address: 'Downtown, Vancouver',
+    beds: 3,
+    baths: 3,
+    area: 2100,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDurAGHzg_fpQxFal-obkFVy1Q3WLPdueAQpz0itcQiRV-WfvulnBEDJbNeV8J06q4mX7PTtXYVJjX4-mHVr_khZLZxQ_s8f6fruGqzeqALyMu8wEHRK1EsOs9f4_jPmS7FxcdzrDkR88Wz0GjaPLXkTZRoJQfur59rxYRLi-WYcW-VU_gKS39CPLOMlftvqGvW0IOk5tXgst5mJ4WQM-ICN4vkdel9ido9YFUQga0OI10i6NSe5W4owt33-2YRi_b_ltdZW2QZC5s',
+    type: 'FOR SALE'
+  }
+]
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark">
       <Header />
       
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <section className="space-y-8">
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl font-light text-nordic-dark dark:text-white">
-              Phase 1 Verification Page
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        {/* Hero Section */}
+        <section className="py-12 md:py-16">
+          <div className="max-w-3xl mx-auto text-center space-y-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark dark:text-white leading-tight">
+              Find your <span className="relative inline-block">
+                <span className="relative z-10 font-medium">sanctuary</span>
+                <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
+              </span>.
             </h1>
-            <p className="text-nordic-muted">This page showcases the shared UI components and layout elements implemented in Phase 1.</p>
+            
+            <div className="relative group max-w-2xl mx-auto">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
+                <span className="material-icons text-nordic-muted text-2xl group-focus-within:text-mosque transition-colors">search</span>
+              </div>
+              <Input 
+                className="pl-12 pr-4 py-4 text-lg" 
+                placeholder="Search by city, neighborhood, or address..." 
+              />
+              <Button 
+                className="absolute inset-y-2 right-2 shadow-lg shadow-mosque/20"
+                size="md"
+              >
+                Search
+              </Button>
+            </div>
+
+            <div className="flex items-center justify-center gap-3 overflow-x-auto hide-scroll py-2 px-4 -mx-4">
+              <Button variant="dark" size="sm" className="whitespace-nowrap">All</Button>
+              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">House</Button>
+              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Apartment</Button>
+              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Villa</Button>
+              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Penthouse</Button>
+              <div className="w-px h-6 bg-nordic-dark/10 mx-2"></div>
+              <Button variant="ghost" size="sm" className="flex items-center gap-1">
+                <span className="material-icons text-base">tune</span> Filters
+              </Button>
+            </div>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <h2 className="text-2xl font-medium text-nordic-dark dark:text-white">UI Kit Showcase</h2>
-              
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Buttons</h3>
-                <div className="flex flex-wrap gap-4">
-                  <Button variant="primary">Primary</Button>
-                  <Button variant="secondary">Secondary</Button>
-                  <Button variant="outline">Outline</Button>
-                  <Button variant="ghost">Ghost</Button>
-                  <Button variant="dark">Dark</Button>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Input</h3>
-                <Input placeholder="Search properties..." />
-              </div>
+        {/* Featured Collections */}
+        <section className="mb-16">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">Featured Collections</h2>
+              <p className="text-nordic-muted mt-1 text-sm">Curated properties for the discerning eye.</p>
             </div>
-
-            <div className="space-y-6">
-              <h2 className="text-2xl font-medium text-nordic-dark dark:text-white">Property Card</h2>
-              <div className="max-w-sm">
-                <PropertyCard property={mockProperty} />
-              </div>
-            </div>
+            <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
+              View all <span className="material-icons text-sm">arrow_forward</span>
+            </a>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {featuredProperties.map(property => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
           </div>
         </section>
       </main>
