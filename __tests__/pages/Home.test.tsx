@@ -18,7 +18,7 @@ describe('Home Page', () => {
 
   it('renders category filters', () => {
     render(<Home />)
-    expect(screen.getByRole('button', { name: /^All$/i })).toBeInTheDocument()
+    expect(screen.getAllByRole('button', { name: /^All$/i }).length).toBeGreaterThanOrEqual(1)
     expect(screen.getByRole('button', { name: /^House$/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^Apartment$/i })).toBeInTheDocument()
     expect(screen.getByRole('button', { name: /^Villa$/i })).toBeInTheDocument()
@@ -29,5 +29,16 @@ describe('Home Page', () => {
     render(<Home />)
     expect(screen.getByText(/Featured Collections/i)).toBeInTheDocument()
     expect(screen.getByText(/Curated properties for the discerning eye./i)).toBeInTheDocument()
+  })
+
+  it('renders new in market section', () => {
+    render(<Home />)
+    expect(screen.getByText(/New in Market/i)).toBeInTheDocument()
+    expect(screen.getByText(/Fresh opportunities added this week./i)).toBeInTheDocument()
+  })
+
+  it('renders load more button', () => {
+    render(<Home />)
+    expect(screen.getByRole('button', { name: /Load more properties/i })).toBeInTheDocument()
   })
 })

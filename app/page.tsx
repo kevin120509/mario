@@ -29,6 +29,53 @@ const featuredProperties: Property[] = [
   }
 ]
 
+const newProperties: Property[] = [
+  {
+    id: 'n1',
+    title: 'Modern Family Home',
+    price: 850000,
+    address: '123 Pine St, Seattle',
+    beds: 3,
+    baths: 2,
+    area: 120,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDuQ9M7U6euA6_cXmYuXnej-N5IuawAW8ds-4G1mzfqmiBc13qXsPhf9_j_zTB8gfEunrBHo8xMsxYwCw_pl8fsxbxRkmyvLR1N9Tiye5ZJG7fwlLn9MwyBanXYhE0emGwp59es1FEyQTRQbmXLUKO74Yj34ZHqrqIkOtMKhP8CmRFvfoHT5LAe10105vUhKNkxIBvtt530nfLigSUTemOOcJMVNmsgactntRJUwOBU_TZzND7BYtDklr8uZcNYlQOK5U74-ufIf-E',
+    type: 'FOR SALE'
+  },
+  {
+    id: 'n2',
+    title: 'Urban Loft',
+    price: 3200,
+    address: '456 Elm Ave, Portland',
+    beds: 1,
+    baths: 1,
+    area: 85,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB4zNatD3vePhIZAi6OHHJKmamYSgeBNSKjEt32tvkkf4s6aBXCF8R4LNfDfPa9leA0t6N1OKOcP358WwZrnosbCBxSM7EaY2_P7qkx3MinRgmHQn7RvleNTwy8cLigMoR3iv0u83chBVbZYI6BcNMcqv80W-l1pIUgIWZcDIXEqtUatrsojSGfM0lTNDZpkBntBUkRY6NB4ZUymYNYvTHXKbO8NZ6N6uoyuuHqcaRWKzHCNXkOR3p-_EVFAHR8QwijIY_m1mefPZ4',
+    type: 'FOR RENT'
+  },
+  {
+    id: 'n3',
+    title: 'Highland Retreat',
+    price: 620000,
+    address: '789 Mountain Rd, Bend',
+    beds: 2,
+    baths: 2,
+    area: 98,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuARQWC19e7mleUpjb8CWLztEv_svJeRFOaC2i-9r9GctFuX5Barzhfai9wNM1WW8bcGlqdFM32d3KPf7SItom5ijdHOz5rGGQPeT7PlWs8-y9LkfcsHLQqsLxalhxP94XJo76_mAMp7T2dVj3hPKHNzTDLLiS6ujSdSsyo3onxQthp4ZkVE8op92gyTLUUucaGaxO8vJvyhH3HuWB07EPqT1WsW0lr9Of5lUPonjG9eiqE1XiJXTqzXUZQt5JorfPwCO1MioZA_Zro',
+    type: 'FOR SALE'
+  },
+  {
+    id: 'n4',
+    title: 'Sea View Penthouse',
+    price: 4500,
+    address: '321 Ocean Dr, Miami',
+    beds: 3,
+    baths: 3,
+    area: 180,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBGq4Phm0uDzCnjHAsnWpYTBVpOds_M6iOsJuRQQA5eUZHkztGgtc7eh_OE6wBeyW1-iZh7yyhROnvvmqkAZ9tyAWFGXk0FG52zU4kZ_EDLA0U0cRszy7byNXTeWe0_hS53SYmtCTEV8Y1AM-WxiIC38UMa15QwFDjXtCGQOxoh35K0Ol_70vfsxm0VqDbaWkr8tcEbLTLy0NXH_GcpGK4lAXizgxYOIlFWGyau-4OIfPZRpjCBDbz_qu3VlN201UUJGiuM9ajVd-U',
+    type: 'FOR RENT'
+  }
+]
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark">
@@ -91,6 +138,33 @@ export default function Home() {
             {featuredProperties.map(property => (
               <PropertyCard key={property.id} property={property} />
             ))}
+          </div>
+        </section>
+
+        {/* New in Market */}
+        <section>
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">New in Market</h2>
+              <p className="text-nordic-muted mt-1 text-sm">Fresh opportunities added this week.</p>
+            </div>
+            <div className="hidden md:flex bg-white dark:bg-white/5 p-1 rounded-lg">
+              <Button variant="dark" size="sm">All</Button>
+              <Button variant="ghost" size="sm">Buy</Button>
+              <Button variant="ghost" size="sm">Rent</Button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {newProperties.map(property => (
+              <PropertyCard key={property.id} property={property} />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Button variant="outline" size="lg" className="bg-white dark:bg-white/5">
+              Load more properties
+            </Button>
           </div>
         </section>
       </main>
