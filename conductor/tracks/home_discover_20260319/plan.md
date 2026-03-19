@@ -5,10 +5,10 @@
     - [x] Write failing tests for Header/Footer structure and links.
     - [x] Implement Header/Footer with Tailwind CSS 4.
     - [x] Verify tests pass and coverage is >80%.
-- [ ] Task: Set up basic UI Kit (Button, Input, Card).
-    - [ ] Write failing tests for UI components (e.g., button click, input value).
-    - [ ] Implement UI components using established design patterns.
-    - [ ] Verify tests pass and coverage is >80%.
+- [x] Task: Set up basic UI Kit (Button, Input, Card). [38ab407]
+    - [x] Write failing tests for UI components (e.g., button click, input value).
+    - [x] Implement UI components using established design patterns.
+    - [x] Verify tests pass and coverage is >80%.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Shared UI Components & Layout' (Protocol in workflow.md)
 
 ## Phase 2: Home Discover Screen Implementation
