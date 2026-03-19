@@ -1,10 +1,10 @@
 # Implementation Plan: Implement Home Discover Screen
 
 ## Phase 1: Shared UI Components & Layout
-- [ ] Task: Create reusable `Header` and `Footer` components.
-    - [ ] Write failing tests for Header/Footer structure and links.
-    - [ ] Implement Header/Footer with Tailwind CSS 4.
-    - [ ] Verify tests pass and coverage is >80%.
+- [x] Task: Create reusable `Header` and `Footer` components. [3e9b910]
+    - [x] Write failing tests for Header/Footer structure and links.
+    - [x] Implement Header/Footer with Tailwind CSS 4.
+    - [x] Verify tests pass and coverage is >80%.
 - [ ] Task: Set up basic UI Kit (Button, Input, Card).
     - [ ] Write failing tests for UI components (e.g., button click, input value).
     - [ ] Implement UI components using established design patterns.
