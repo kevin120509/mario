@@ -12,10 +12,10 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Shared UI Components & Layout' (Protocol in workflow.md)
 
 ## Phase 2: Home Discover Screen Implementation
-- [ ] Task: Migrate HTML structure from `resources/home_discover_screen/code.html` to `app/page.tsx`.
-    - [ ] Write failing tests for main page structure and key sections.
-    - [ ] Implement the layout and hero section in `app/page.tsx`.
-    - [ ] Verify tests pass and coverage is >80%.
+- [x] Task: Migrate HTML structure from `resources/home_discover_screen/code.html` to `app/page.tsx`. [72164a3]
+    - [x] Write failing tests for main page structure and key sections.
+    - [x] Implement the layout and hero section in `app/page.tsx`.
+    - [x] Verify tests pass and coverage is >80%.
 - [ ] Task: Implement property listing section and search bar.
     - [ ] Write failing tests for property list rendering and search input.
     - [ ] Implement the property grid and search bar functionality.
