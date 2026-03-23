@@ -16,10 +16,10 @@
     - [x] Write failing tests for main page structure and key sections.
     - [x] Implement the layout and hero section in `app/page.tsx`.
     - [x] Verify tests pass and coverage is >80%.
-- [~] Task: Implement property listing section and search bar.
-    - [ ] Write failing tests for property list rendering and search input.
-    - [ ] Implement the property grid and search bar functionality.
-    - [ ] Verify tests pass and coverage is >80%.
+- [x] Task: Implement property listing section and search bar. [a1e68d2]
+    - [x] Write failing tests for property list rendering and search input.
+    - [x] Implement the property grid and search bar functionality.
+    - [x] Verify tests pass and coverage is >80%.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Home Discover Screen Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Final Polish & Verification
