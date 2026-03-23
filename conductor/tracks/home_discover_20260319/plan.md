@@ -16,7 +16,7 @@
     - [x] Write failing tests for main page structure and key sections.
     - [x] Implement the layout and hero section in `app/page.tsx`.
     - [x] Verify tests pass and coverage is >80%.
-- [ ] Task: Implement property listing section and search bar.
+- [~] Task: Implement property listing section and search bar.
     - [ ] Write failing tests for property list rendering and search input.
     - [ ] Implement the property grid and search bar functionality.
     - [ ] Verify tests pass and coverage is >80%.

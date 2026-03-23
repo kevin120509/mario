@@ -1,8 +1,7 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import Button from '@/components/ui/Button'
-import Input from '@/components/ui/Input'
-import PropertyCard, { Property } from '@/components/ui/PropertyCard'
+import HomeContent from '@/components/home/HomeContent'
+import { Property } from '@/components/ui/PropertyCard'
 
 const featuredProperties: Property[] = [
   {
@@ -73,100 +72,41 @@ const newProperties: Property[] = [
     area: 180,
     imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBGq4Phm0uDzCnjHAsnWpYTBVpOds_M6iOsJuRQQA5eUZHkztGgtc7eh_OE6wBeyW1-iZh7yyhROnvvmqkAZ9tyAWFGXk0FG52zU4kZ_EDLA0U0cRszy7byNXTeWe0_hS53SYmtCTEV8Y1AM-WxiIC38UMa15QwFDjXtCGQOxoh35K0Ol_70vfsxm0VqDbaWkr8tcEbLTLy0NXH_GcpGK4lAXizgxYOIlFWGyau-4OIfPZRpjCBDbz_qu3VlN201UUJGiuM9ajVd-U',
     type: 'FOR RENT'
+  },
+  {
+    id: 'n5',
+    title: 'Central Studio',
+    price: 550000,
+    address: '555 Main St, Chicago',
+    beds: 1,
+    baths: 1,
+    area: 50,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA1w-Hb1289NqZKon3VK8bpmMiCDYYiAMT5egzTINo9m9wSZRHv-k-1IGTVoL1NT8YeZXJHa87JPNDIPrtrbP7jChHq0ypXF90uByhC6VA9O788_B4FY8JVg4chbWN9bcrn9-9FvVvfZX8Aj60Iqg_C8CsCA9DEnJqi2rJvzmK5UP5z-9XRTRjBneAPCa8iGgGWBD9yYKsziN6vn0ePBDGo3inieQtmbr46W31p6UfQ649XRxTm7ygOY2J-jxW1r0qWs8i97KGpkTE',
+    type: 'FOR SALE'
+  },
+  {
+    id: 'n6',
+    title: 'Garden Villa',
+    price: 2800,
+    address: '999 Oak Ln, Austin',
+    beds: 2,
+    baths: 2,
+    area: 110,
+    imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCfGXdY0g51ojSg0GMeTW9ndLY3mpKK3oMtWxo2nwd_dwi1pgn1Boi_ovaDGIFhUA7nwu3WdBch8ZuHxoHu3QfgM5ceAsp8pglRVyCROWNcy9zeDNP2wqLoevyKGcaEyFYHYpIx2KK46nLWthnHiHugmkKw48kJsL8IjMO1bL3T1Zwt8bvQDTTUHTgB3GqZ2RU2asRzF1jVg0rLw3LWXXTq0YF1CsbhlWpYOuCEpH5bB8zkBlbKXR4At_M46AL8rJqn5c6BrPD5PP8',
+    type: 'FOR RENT'
   }
 ]
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark">
+    <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark text-nordic-dark dark:text-white">
       <Header />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16">
-          <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-nordic-dark dark:text-white leading-tight">
-              Find your <span className="relative inline-block">
-                <span className="relative z-10 font-medium">sanctuary</span>
-                <span className="absolute bottom-2 left-0 w-full h-3 bg-mosque/20 -rotate-1 z-0"></span>
-              </span>.
-            </h1>
-            
-            <div className="relative group max-w-2xl mx-auto">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-                <span className="material-icons text-nordic-muted text-2xl group-focus-within:text-mosque transition-colors">search</span>
-              </div>
-              <Input 
-                className="pl-12 pr-4 py-4 text-lg" 
-                placeholder="Search by city, neighborhood, or address..." 
-              />
-              <Button 
-                className="absolute inset-y-2 right-2 shadow-lg shadow-mosque/20"
-                size="md"
-              >
-                Search
-              </Button>
-            </div>
-
-            <div className="flex items-center justify-center gap-3 overflow-x-auto hide-scroll py-2 px-4 -mx-4">
-              <Button variant="dark" size="sm" className="whitespace-nowrap">All</Button>
-              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">House</Button>
-              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Apartment</Button>
-              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Villa</Button>
-              <Button variant="outline" size="sm" className="whitespace-nowrap bg-white dark:bg-white/5">Penthouse</Button>
-              <div className="w-px h-6 bg-nordic-dark/10 mx-2"></div>
-              <Button variant="ghost" size="sm" className="flex items-center gap-1">
-                <span className="material-icons text-base">tune</span> Filters
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Collections */}
-        <section className="mb-16">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">Featured Collections</h2>
-              <p className="text-nordic-muted mt-1 text-sm">Curated properties for the discerning eye.</p>
-            </div>
-            <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
-              View all <span className="material-icons text-sm">arrow_forward</span>
-            </a>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {featuredProperties.map(property => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-        </section>
-
-        {/* New in Market */}
-        <section>
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-2xl font-light text-nordic-dark dark:text-white">New in Market</h2>
-              <p className="text-nordic-muted mt-1 text-sm">Fresh opportunities added this week.</p>
-            </div>
-            <div className="hidden md:flex bg-white dark:bg-white/5 p-1 rounded-lg">
-              <Button variant="dark" size="sm">All</Button>
-              <Button variant="ghost" size="sm">Buy</Button>
-              <Button variant="ghost" size="sm">Rent</Button>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {newProperties.map(property => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <Button variant="outline" size="lg" className="bg-white dark:bg-white/5">
-              Load more properties
-            </Button>
-          </div>
-        </section>
+        <HomeContent 
+          initialFeaturedProperties={featuredProperties}
+          initialNewProperties={newProperties}
+        />
       </main>
 
       <Footer />
