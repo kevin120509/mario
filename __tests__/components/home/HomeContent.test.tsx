@@ -72,7 +72,6 @@ describe('HomeContent', () => {
   })
 
   it('triggers search on Enter key', () => {
-    const onSearch = jest.fn()
     // Need to test SearchBar separately or via HomeContent
     render(<HomeContent initialFeaturedProperties={mockFeatured} initialNewProperties={mockNew} />)
     const input = screen.getByPlaceholderText(/Search by city, neighborhood, or address.../i)

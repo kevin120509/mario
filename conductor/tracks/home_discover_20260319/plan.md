@@ -23,11 +23,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Home Discover Screen Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Final Polish & Verification
-- [ ] Task: Ensure full responsiveness and mobile-first design.
-    - [ ] Write failing tests for mobile-specific layouts/interactions.
-    - [ ] Refine CSS for tablet and desktop views.
-    - [ ] Verify tests pass and coverage is >80%.
-- [ ] Task: Final linting, type checking, and performance check.
-    - [ ] Run `npm run lint` and `tsc`.
-    - [ ] Check accessibility and performance using best practices.
+- [x] Task: Ensure full responsiveness and mobile-first design. [a1e68d2]
+    - [x] Write failing tests for mobile-specific layouts/interactions.
+    - [x] Refine CSS for tablet and desktop views.
+    - [x] Verify tests pass and coverage is >80%.
+- [x] Task: Final linting, type checking, and performance check. [e5d77a0]
+    - [x] Run `npm run lint` and `tsc`.
+    - [x] Check accessibility and performance using best practices.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Final Polish & Verification' (Protocol in workflow.md)

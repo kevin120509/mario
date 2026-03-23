@@ -10,6 +10,7 @@ export interface Property {
   area: number
   imageUrl: string
   type: 'FOR SALE' | 'FOR RENT'
+  tag?: string
 }
 
 interface PropertyCardProps {
@@ -32,6 +33,11 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           fill
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
+        {property.tag && (
+          <div className="absolute top-4 left-4 bg-white/90 dark:bg-black/80 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-nordic-dark dark:text-white">
+            {property.tag}
+          </div>
+        )}
         <button className="absolute top-3 right-3 p-2 bg-white/90 dark:bg-black/50 rounded-full hover:bg-mosque hover:text-white transition-colors text-nordic-dark">
           <span className="material-icons text-lg">favorite_border</span>
         </button>

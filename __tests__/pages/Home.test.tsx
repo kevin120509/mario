@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import Home from '@/app/page.tsx'
+import Home from '@/app/page'
 
 describe('Home Page', () => {
   it('renders the hero section with heading', () => {
