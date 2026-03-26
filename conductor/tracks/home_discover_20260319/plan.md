@@ -31,3 +31,6 @@
     - [x] Run `npm run lint` and `tsc`.
     - [x] Check accessibility and performance using best practices.
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Final Polish & Verification' (Protocol in workflow.md)
+
+## Phase: Review Fixes
+- [x] Task: Apply review suggestions [f5889dc]
