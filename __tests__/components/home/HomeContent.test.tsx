@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import HomeContent from '@/components/home/HomeContent'
+import { HomeContent } from '@/components/home/HomeContent'
 import { Property } from '@/components/ui/PropertyCard'
 
 const mockFeatured: Property[] = [

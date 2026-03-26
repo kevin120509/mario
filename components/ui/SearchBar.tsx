@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import Input from './Input'
-import Button from './Button'
+import { Input } from './Input'
+import { Button } from './Button'
 
 interface SearchBarProps {
   onSearch?: (query: string) => void
 }
 
-export default function SearchBar({ onSearch }: SearchBarProps) {
+export function SearchBar({ onSearch }: SearchBarProps) {
   const [query, setQuery] = useState('')
 
   const handleSearch = () => {

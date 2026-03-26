@@ -7,7 +7,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
 }
 
-export default function Button({
+/**
+ * A reusable button component with multiple variants and sizes.
+ * @param {ButtonProps} props The properties for the button.
+ * @return {JSX.Element} The rendered button component.
+ */
+export function Button({
   children,
   variant = 'primary',
   size = 'md',

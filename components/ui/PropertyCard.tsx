@@ -1,5 +1,8 @@
 import Image from 'next/image'
 
+/**
+ * Represents a property listing.
+ */
 export interface Property {
   id: string
   title: string
@@ -17,7 +20,12 @@ interface PropertyCardProps {
   property: Property
 }
 
-export default function PropertyCard({ property }: PropertyCardProps) {
+/**
+ * A card component that displays property details.
+ * @param {PropertyCardProps} props The properties for the card.
+ * @return {JSX.Element} The rendered property card component.
+ */
+export function PropertyCard({ property }: PropertyCardProps) {
   const formattedPrice = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',

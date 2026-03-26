@@ -1,6 +1,6 @@
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import HomeContent from '@/components/home/HomeContent'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
+import { HomeContent } from '@/components/home/HomeContent'
 import { Property } from '@/components/ui/PropertyCard'
 
 const featuredProperties: Property[] = [

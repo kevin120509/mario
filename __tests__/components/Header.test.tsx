@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import Header from '@/components/layout/Header'
+import { Header } from '@/components/layout/Header'
 
 describe('Header', () => {
   it('renders the logo and company name', () => {

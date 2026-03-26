@@ -1,16 +1,16 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import SearchBar from '@/components/ui/SearchBar'
-import Button from '@/components/ui/Button'
-import PropertyCard, { Property } from '@/components/ui/PropertyCard'
+import { SearchBar } from '@/components/ui/SearchBar'
+import { Button } from '@/components/ui/Button'
+import { PropertyCard, Property } from '@/components/ui/PropertyCard'
 
 interface HomeContentProps {
   initialFeaturedProperties: Property[]
   initialNewProperties: Property[]
 }
 
-export default function HomeContent({ 
+export function HomeContent({ 
   initialFeaturedProperties, 
   initialNewProperties 
 }: HomeContentProps) {

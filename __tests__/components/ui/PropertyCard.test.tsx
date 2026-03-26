@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import PropertyCard from '@/components/ui/PropertyCard'
+import { PropertyCard } from '@/components/ui/PropertyCard'
 
 const mockProperty = {
   id: '1',
