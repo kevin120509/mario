@@ -26,7 +26,7 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
   return (
     <div className="relative group max-w-2xl mx-auto">
       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none z-10">
-        <span className="material-icons text-nordic-muted text-2xl group-focus-within:text-mosque transition-colors">search</span>
+        <span className="material-symbols-outlined text-nordic-muted text-2xl group-focus-within:text-mosque transition-colors">search</span>
       </div>
       <Input 
         className="pl-12 pr-4 py-4 text-lg" 

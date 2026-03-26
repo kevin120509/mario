@@ -13,7 +13,7 @@ export default function Header() {
         <div className="flex justify-between items-center h-20">
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-nordic-dark flex items-center justify-center">
-              <span className="material-icons text-white text-lg">apartment</span>
+              <span className="material-symbols-outlined text-white text-lg">apartment</span>
             </div>
             <span className="text-xl font-semibold tracking-tight text-nordic-dark dark:text-white">LuxeEstate</span>
           </div>
@@ -35,10 +35,10 @@ export default function Header() {
 
           <div className="flex items-center space-x-6">
             <button className="text-nordic-dark hover:text-mosque dark:text-gray-400 dark:hover:text-white transition-colors" aria-label="search">
-              <span className="material-icons">search</span>
+              <span className="material-symbols-outlined">search</span>
             </button>
             <button className="hidden sm:block text-nordic-dark hover:text-mosque dark:text-gray-400 dark:hover:text-white transition-colors relative" aria-label="notifications_none">
-              <span className="material-icons">notifications_none</span>
+              <span className="material-symbols-outlined">notifications_none</span>
               <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full border-2 border-background-light dark:border-background-dark"></span>
             </button>
             
@@ -48,7 +48,7 @@ export default function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="menu"
             >
-              <span className="material-icons">{isMenuOpen ? 'close' : 'menu'}</span>
+              <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
 
             <button className="hidden sm:flex items-center gap-2 pl-2 border-l border-nordic-dark/10 dark:border-white/10 ml-2">

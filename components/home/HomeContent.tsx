@@ -61,7 +61,7 @@ export default function HomeContent({
             ))}
             <div className="w-px h-6 bg-nordic-dark/10 mx-2"></div>
             <Button variant="ghost" size="sm" className="flex items-center gap-1">
-              <span className="material-icons text-base">tune</span> Filters
+              <span className="material-symbols-outlined text-base">tune</span> Filters
             </Button>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function HomeContent({
             <p className="text-nordic-muted mt-1 text-sm">Curated properties for the discerning eye.</p>
           </div>
           <a className="hidden sm:flex items-center gap-1 text-sm font-medium text-mosque hover:opacity-70 transition-opacity" href="#">
-            View all <span className="material-icons text-sm">arrow_forward</span>
+            View all <span className="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
         </div>
         

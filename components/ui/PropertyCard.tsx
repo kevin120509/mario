@@ -39,7 +39,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
         )}
         <button className="absolute top-3 right-3 p-2 bg-white/90 dark:bg-black/50 rounded-full hover:bg-mosque hover:text-white transition-colors text-nordic-dark">
-          <span className="material-icons text-lg">favorite_border</span>
+          <span className="material-symbols-outlined text-lg">favorite_border</span>
         </button>
         <div className={`absolute bottom-3 left-3 ${property.type === 'FOR SALE' ? 'bg-nordic-dark/90' : 'bg-mosque/90'} text-white text-xs font-bold px-2 py-1 rounded`}>
           {property.type}
@@ -56,13 +56,13 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         <p className="text-nordic-muted text-xs mb-4">{property.address}</p>
         <div className="mt-auto flex items-center justify-between pt-3 border-t border-gray-100 dark:border-white/10">
           <div className="flex items-center gap-1 text-nordic-muted text-xs">
-            <span className="material-icons text-sm text-mosque/80">king_bed</span> {property.beds}
+            <span className="material-symbols-outlined text-sm text-mosque/80">king_bed</span> {property.beds}
           </div>
           <div className="flex items-center gap-1 text-nordic-muted text-xs">
-            <span className="material-icons text-sm text-mosque/80">bathtub</span> {property.baths}
+            <span className="material-symbols-outlined text-sm text-mosque/80">bathtub</span> {property.baths}
           </div>
           <div className="flex items-center gap-1 text-nordic-muted text-xs">
-            <span className="material-icons text-sm text-mosque/80">square_foot</span> {property.area}m²
+            <span className="material-symbols-outlined text-sm text-mosque/80">square_foot</span> {property.area}m²
           </div>
         </div>
       </div>
