@@ -43,7 +43,7 @@ The following commands are available for development and deployment:
 5. **Responsiveness:** Ensure all components are mobile-first and responsive, following the patterns in the `resources/` files.
 
 ## Immediate Tasks (TODO)
-- [ ] Migrate the Home Discover Screen from `resources/home_discover_screen/code.html` to `app/page.tsx`.
-- [ ] Create a reusable `Header` and `Footer` component based on the reference designs.
-- [ ] Set up a components directory (e.g., `components/ui`) for shared elements like buttons, cards, and inputs.
-- [ ] Implement the property search and filtering logic.
+- [x] Migrate the Home Discover Screen from `resources/home_discover_screen/code.html` to `app/page.tsx`.
+- [x] Create a reusable `Header` and `Footer` component based on the reference designs.
+- [x] Set up a components directory (e.g., `components/ui`) for shared elements like buttons, cards, and inputs.
+- [x] Implement the property search and filtering logic.

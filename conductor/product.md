@@ -12,7 +12,7 @@ The primary focus is on **High-end Buyers**—individuals seeking premium proper
 
 ## Core Features
 - **Property Details View:** A rich, immersive view of each property, showcasing images, amenities, and detailed descriptions to help buyers make informed decisions.
-- **Home Discover Screen:** A central hub for property search and discovery (as outlined in the initial project tasks).
+- **Home Discover Screen:** A central hub for property search and discovery, featuring interactive filters for property types (Buy/Rent) and a search bar for quick location-based discovery. (Implemented)
 
 ## Visual Identity & UX
 The platform will follow a **Nordic Minimalist** design aesthetic:
