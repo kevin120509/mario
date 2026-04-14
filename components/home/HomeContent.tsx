@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { SearchBar } from '@/components/ui/SearchBar'
 import { Button } from '@/components/ui/Button'
 import { PropertyCard, Property } from '@/components/ui/PropertyCard'
+import { FilterModal, FilterState } from '@/components/ui/FilterModal'
 
 interface HomeContentProps {
   initialFeaturedProperties: Property[]
@@ -15,8 +16,17 @@ export function HomeContent({
   initialNewProperties 
 }: HomeContentProps) {
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [activeType, setActiveType] = useState('All')
+  const [activeType, setActiveType] = useState<'All' | 'Buy' | 'Rent'>('All')
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
+  
+  const [filters, setFilters] = useState<FilterState>({
+    category: 'All',
+    minPrice: 0,
+    maxPrice: 10000000,
+    beds: 0,
+    baths: 0,
+    amenities: []
+  })
 
   const categories = ['All', 'House', 'Apartment', 'Villa', 'Penthouse']
 
@@ -29,9 +39,21 @@ export function HomeContent({
                          (activeType === 'Buy' && property.type === 'FOR SALE') ||
                          (activeType === 'Rent' && property.type === 'FOR RENT')
 
-      return matchesSearch && matchesType
+      const matchesCategory = filters.category === 'All' || property.title.toLowerCase().includes(filters.category.toLowerCase())
+      
+      const matchesPrice = property.price >= filters.minPrice && property.price <= filters.maxPrice
+      
+      const matchesBeds = property.beds >= filters.beds
+      const matchesBaths = property.baths >= filters.baths
+
+      return matchesSearch && matchesType && matchesCategory && matchesPrice && matchesBeds && matchesBaths
     })
-  }, [initialNewProperties, searchQuery, activeType])
+  }, [initialNewProperties, searchQuery, activeType, filters])
+
+  const handleApplyFilters = (newFilters: FilterState) => {
+    setFilters(newFilters)
+    setIsFilterModalOpen(false)
+  }
 
   return (
     <>
@@ -51,16 +73,21 @@ export function HomeContent({
             {categories.map(category => (
               <Button 
                 key={category}
-                variant={activeCategory === category ? 'dark' : 'outline'} 
+                variant={filters.category === category ? 'dark' : 'outline'} 
                 size="sm" 
-                className={`whitespace-nowrap ${activeCategory !== category ? 'bg-white dark:bg-white/5' : ''}`}
-                onClick={() => setActiveCategory(category)}
+                className={`whitespace-nowrap ${filters.category !== category ? 'bg-white dark:bg-white/5' : ''}`}
+                onClick={() => setFilters(prev => ({ ...prev, category }))}
               >
                 {category}
               </Button>
             ))}
             <div className="w-px h-6 bg-nordic-dark/10 mx-2"></div>
-            <Button variant="ghost" size="sm" className="flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="flex items-center gap-1"
+              onClick={() => setIsFilterModalOpen(true)}
+            >
               <span className="material-symbols-outlined text-base">tune</span> Filters
             </Button>
           </div>
@@ -127,7 +154,7 @@ export function HomeContent({
         ) : (
           <div className="py-20 text-center">
             <p className="text-nordic-muted">No properties found matching your search.</p>
-            <Button variant="ghost" className="mt-4" onClick={() => {setSearchQuery(''); setActiveType('All');}}>
+            <Button variant="ghost" className="mt-4" onClick={() => {setSearchQuery(''); setActiveType('All'); setFilters({category: 'All', minPrice: 0, maxPrice: 10000000, beds: 0, baths: 0, amenities: []});}}>
               Clear filters
             </Button>
           </div>
@@ -141,6 +168,13 @@ export function HomeContent({
           </div>
         )}
       </section>
+
+      <FilterModal 
+        isOpen={isFilterModalOpen} 
+        onClose={() => setIsFilterModalOpen(false)}
+        initialFilters={filters}
+        onApply={handleApplyFilters}
+      />
     </>
   )
 }

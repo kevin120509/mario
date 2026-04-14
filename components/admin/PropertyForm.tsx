@@ -1,8 +1,11 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { PropertyDetails } from '@/lib/services/propertyService'
+import { agentService, Agent } from '@/lib/services/agentService'
 
 interface PropertyFormProps {
+  initialData?: PropertyDetails
   onSubmit?: (data: any) => void
 }
 
@@ -11,55 +14,66 @@ interface PropertyFormProps {
  * @param {PropertyFormProps} props The properties for the form.
  * @return {JSX.Element} The rendered form component.
  */
-export function PropertyForm({ onSubmit }: PropertyFormProps) {
+export function PropertyForm({ initialData, onSubmit }: PropertyFormProps) {
+  const [agents, setAgents] = useState<Agent[]>([])
+  const [selectedAgentId, setSelectedAgentId] = useState(initialData?.agent.email || '')
+  
   const [formData, setFormData] = useState({
-    title: '',
-    price: '',
-    status: 'for-sale',
+    title: initialData?.title || '',
+    price: initialData?.price.toString() || '',
+    status: initialData?.type.includes('RENT') ? 'for-rent' : 'for-sale',
     type: 'apartment',
-    description: '',
-    address: '',
-    area: '',
-    yearBuilt: '',
-    bedrooms: 3,
-    bathrooms: 2,
+    description: initialData?.description || '',
+    address: initialData?.address || '',
+    area: initialData?.area.toString() || '',
+    yearBuilt: '2024',
+    beds: initialData?.beds || 3,
+    baths: initialData?.baths || 2,
     parking: 1,
     amenities: {
-      swimmingPool: false,
-      garden: true,
-      airConditioning: false,
-      smartHome: false
+      swimmingPool: initialData?.amenities.includes('Swimming Pool') || false,
+      garden: initialData?.amenities.includes('Garden') || true,
+      airConditioning: initialData?.amenities.includes('Air Conditioning') || false,
+      smartHome: initialData?.amenities.includes('Smart Home System') || false
     }
   })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { id, value } = e.target
-    setFormData(prev => ({ ...prev, [id]: value }))
-  }
-
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, checked } = e.target
-    setFormData(prev => ({
-      ...prev,
-      amenities: {
-        ...prev.amenities,
-        [id]: checked
-      }
-    }))
-  }
-
-  const handleIncrement = (field: 'bedrooms' | 'bathrooms' | 'parking') => {
-    setFormData(prev => ({ ...prev, [field]: prev[field] + 1 }))
-  }
-
-  const handleDecrement = (field: 'bedrooms' | 'bathrooms' | 'parking') => {
-    setFormData(prev => ({ ...prev, [field]: Math.max(0, prev[field] - 1) }))
-  }
+  useEffect(() => {
+    setAgents(agentService.getAgents())
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (onSubmit && formData.title && formData.price && formData.address) {
-      onSubmit(formData)
+      const selectedAmenities = []
+      if (formData.amenities.swimmingPool) selectedAmenities.push('Swimming Pool')
+      if (formData.amenities.garden) selectedAmenities.push('Garden')
+      if (formData.amenities.airConditioning) selectedAmenities.push('Air Conditioning')
+      if (formData.amenities.smartHome) selectedAmenities.push('Smart Home System')
+
+      const selectedAgent = agents.find(a => a.email === selectedAgentId) || agents[0]
+
+      onSubmit({
+        title: formData.title,
+        price: parseFloat(formData.price),
+        address: formData.address,
+        beds: formData.beds,
+        baths: formData.baths,
+        area: parseFloat(formData.area),
+        imageUrl: initialData?.imageUrl || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+        type: formData.status === 'for-sale' ? 'FOR SALE' : 'FOR RENT',
+        tag: 'New',
+        description: formData.description,
+        images: initialData?.images || ['https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'],
+        amenities: selectedAmenities,
+        agent: {
+          name: selectedAgent.name,
+          role: selectedAgent.role,
+          photo: selectedAgent.photo,
+          phone: selectedAgent.phone,
+          email: selectedAgent.email
+        }
+      })
     }
   }
 

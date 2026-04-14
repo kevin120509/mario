@@ -1,25 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { authService, User } from '@/lib/services/authService'
+import { LoginModal } from '@/components/ui/LoginModal'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false)
+
+  useEffect(() => {
+    setUser(authService.getCurrentUser())
+
+    const handleAuthChange = () => {
+      setUser(authService.getCurrentUser())
+    }
+
+    window.addEventListener('auth-state-changed', handleAuthChange)
+    return () => window.removeEventListener('auth-state-changed', handleAuthChange)
+  }, [])
+
+  const handleProfileClick = () => {
+    if (user) {
+      // Navigate to profile
+    } else {
+      setIsLoginModalOpen(true)
+    }
+  }
 
   return (
     <nav className="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-nordic-dark/10 dark:border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+          <Link href="/" className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
             <div className="w-8 h-8 rounded-lg bg-nordic-dark flex items-center justify-center">
               <span className="material-symbols-outlined text-white text-lg">apartment</span>
             </div>
             <span className="text-xl font-semibold tracking-tight text-nordic-dark dark:text-white">LuxeEstate</span>
-          </div>
+          </Link>
           
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#" className="text-mosque font-medium text-sm border-b-2 border-mosque px-1 py-1">
+            <Link href="/" className="text-mosque font-medium text-sm border-b-2 border-mosque px-1 py-1">
               Buy
             </Link>
             <Link href="#" className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all">
@@ -28,7 +51,7 @@ export function Header() {
             <Link href="#" className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all">
               Sell
             </Link>
-            <Link href="#" className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all">
+            <Link href="/favorites" className="text-nordic-dark/70 hover:text-nordic-dark font-medium text-sm hover:border-b-2 hover:border-nordic-dark/20 px-1 py-1 transition-all">
               Saved Homes
             </Link>
           </div>
@@ -51,16 +74,28 @@ export function Header() {
               <span className="material-symbols-outlined">{isMenuOpen ? 'close' : 'menu'}</span>
             </button>
 
-            <button className="hidden sm:flex items-center gap-2 pl-2 border-l border-nordic-dark/10 dark:border-white/10 ml-2">
-              <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all">
-                <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAWhQZ663Bd08kmzjbOPmUk4UIxYooNONShMEFXLR-DtmVi6Oz-TiaY77SPwFk7g0OobkeZEOMvt6v29mSOD0Xm2g95WbBG3ZjWXmiABOUwGU0LOySRfVDo-JTXQ0-gtwjWxbmue0qDm91m-zEOEZwAW6iRFB1qC1bAU-wkjxm67Sbztq8w7srHkFT9bVEC86qG-FzhOBTomhAurNRmx9l8Yfqabk328NfdKuVLckgCdaPsNFE3yN65MeoRi05GA_gXIMwG4YDIeA"
-                  alt="Profile"
-                  width={36}
-                  height={36}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <button 
+              className="flex items-center gap-2 pl-2 border-l border-nordic-dark/10 dark:border-white/10 ml-2"
+              onClick={handleProfileClick}
+            >
+              {user ? (
+                <Link href="/profile" className="flex items-center gap-2">
+                  <div className="w-9 h-9 rounded-full bg-gray-200 overflow-hidden ring-2 ring-transparent hover:ring-mosque transition-all">
+                    <Image
+                      src={user.photo || "https://lh3.googleusercontent.com/aida-public/AB6AXuCAWhQZ663Bd08kmzjbOPmUk4UIxYooNONShMEFXLR-DtmVi6Oz-TiaY77SPwFk7g0OobkeZEOMvt6v29mSOD0Xm2g95WbBG3ZjWXmiABOUwGU0LOySRfVDo-JTXQ0-gtwjWxbmue0qDm91m-zEOEZwAW6iRFB1qC1bAU-wkjxm67Sbztq8w7srHkFT9bVEC86qG-FzhOBTomhAurNRmx9l8Yfqabk328NfdKuVLckgCdaPsNFE3yN65MeoRi05GA_gXIMwG4YDIeA"}
+                      alt="Profile"
+                      width={36}
+                      height={36}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="hidden lg:block text-sm font-medium text-nordic-dark dark:text-white">{user.name.split(' ')[0]}</span>
+                </Link>
+              ) : (
+                <div className="w-9 h-9 rounded-full bg-mosque/10 flex items-center justify-center text-mosque hover:bg-mosque hover:text-white transition-all">
+                  <span className="material-symbols-outlined">person</span>
+                </div>
+              )}
             </button>
           </div>
         </div>
@@ -69,7 +104,7 @@ export function Header() {
       {/* Mobile Menu */}
       <div className={`md:hidden border-t border-nordic-dark/5 bg-background-light dark:bg-background-dark overflow-hidden transition-all duration-300 ${isMenuOpen ? 'h-auto py-2' : 'h-0'}`}>
         <div className="px-4 space-y-1">
-          <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-mosque bg-mosque/10">
+          <Link href="/" className="block px-3 py-2 rounded-md text-base font-medium text-mosque bg-mosque/10">
             Buy
           </Link>
           <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5">
@@ -78,11 +113,16 @@ export function Header() {
           <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5">
             Sell
           </Link>
-          <Link href="#" className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5">
+          <Link href="/favorites" className="block px-3 py-2 rounded-md text-base font-medium text-nordic-dark hover:bg-black/5">
             Saved Homes
           </Link>
         </div>
       </div>
+
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+      />
     </nav>
   )
 }
